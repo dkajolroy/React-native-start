@@ -2,49 +2,66 @@ import { View, Text, StatusBar, StyleSheet, Button, TextInput } from 'react-nati
 import React, { useState } from 'react'
 
 export default function App() {
-  const [value, setValue] = useState(2)
-  
+  const [value, setValue] = useState([
+    { name: "Samsung", price: 22 },
+    { name: "Realme", price: 33 },
+    { name: "Vivo", price: 23 },
+    { name: "Oppo", price: 32 },
+    { name: "Xiaomi", price: 44 },
+    { name: "Samphony", price: 39 },
+    { name: "Walton", price: 36 },
+    { name: "Iphone", price: 42 },
+    { name: "Itel", price: 11 }
+  ])
+
   return (
-    <View style={style.view}>
-      <StatusBar backgroundColor="green" />
-      <View style={style.box}>
-        <Button onPress={() => setValue(x=>x-2)} title='Incre' />
-        <Text style={style.value}>{value}</Text>
-        <Button onPress={() => setValue(x=>x+2)} title='Decre' />
+    <View >
+      <Text style={style.header}>E-commerce Product</Text>
+      <View style={style.flexBox}>
+        {
+          value.map((x, i) => (
+            <View style={style.productFlex} key={i}>
+              <View style={style.product}>
+              <Text style={style.productName}>{x.name}</Text>
+              <Text style={style.productPrice}>Price: ${x.price}</Text>
+            </View>
+            </View>
+          )
+          )
+        }
       </View>
-        <TextInput keyboardType='numeric' onChangeText={(e)=>setValue(e)} style={style.input} placeholder='Enter a value' />
     </View >
   )
 }
 
 const style = StyleSheet.create({
-
-  view: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "green"
-  },
-  box: {
-    width: 300,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    borderRadius: 50,
-    backgroundColor: "#fff"
-  },
-  value:{
-    fontSize: 22,
-    marginHorizontal: 10,
-  },
-  input:{
-    backgroundColor: "#fff",
-    borderRadius:10,
-    width:300,
+ 
+  header: {
+    textAlign: 'center',
     fontSize: 20,
-    marginTop: 10,
+    color: 'black'
+  },
+  flexBox:{
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
+  productFlex:{
+    width: "33.33%",
+    
+  },
+  product:{
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    borderRadius: 10,
+  },
+  productName:{
+    color: "black",
+  },
+  productPrice:{
+    color: "black",
   }
-
 
 })
